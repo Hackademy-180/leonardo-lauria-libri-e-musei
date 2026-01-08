@@ -12,6 +12,7 @@ class PublicController extends Controller
    public function homepage () {
     return view('welcome');
 }
+// sezione libri
 public function upload_book(){
     return view("libri.upload_book");
    
@@ -29,6 +30,7 @@ public function card_libri(){
     $books=Book::all();
     return view("libri.card_libri",compact("books"));
 }
+// sezione musei
 public function upload_museum(){
     return view("musei.upload_museum");
 }
@@ -45,7 +47,10 @@ public function card_museum(){
     $museums=Museum::all();
     return view("musei.card_museum",compact("museums"));
 }
-
+// sezione film
+public function film_upload(){
+    return view("film.film_upload");
+}
 
 
 }

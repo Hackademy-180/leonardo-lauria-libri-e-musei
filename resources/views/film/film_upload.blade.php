@@ -1,9 +1,9 @@
 <x-layout>
-    <h1 class="text-center fw-bold">i nostri film</h1>
+    <h1 class="text-center fw-bold">inserimento film</h1>
     <main class="container">
         <section class="row">
             <div class="col-col col-md-6">
-                <form method="POST", action="{{route("post_book")}}">
+                <form method="POST", action="{{route("post_film")}}">
                     @csrf
                     <div class="mb-3">
                         <label for="text" class="form-label fw-bold">nome del film</label>

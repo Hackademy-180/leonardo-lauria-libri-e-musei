@@ -21,6 +21,12 @@
          <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{route("inserimento musei")}}">inserimento musei</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route("film_upload")}}">inserimento film</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route("film_collection")}}">collezione film </a>
+        </li>
       </ul>
     </div>
   </div>

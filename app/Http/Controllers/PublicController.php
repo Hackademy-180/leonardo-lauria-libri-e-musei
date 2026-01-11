@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Film;
 use App\Models\Museum;
 use Illuminate\Http\Request;
 use App\Http\Controllers\PublicController;
@@ -50,6 +51,19 @@ public function card_museum(){
 // sezione film
 public function film_upload(){
     return view("film.film_upload");
+}
+public function post_film(Request $request){
+Film::create([
+    "filmName"=>$request->filmName,
+    "filmRegist"=>$request->filmRegist,
+    "filmYear"=>$request->filmYear,
+    "filmDescription"=>$request->filmDescription
+]);
+return redirect(route("film_collection"))->with('status','nuovo film inserito con successo');
+}
+public function film_collection(){
+    $films=Film::all();
+    return view("film.film_collection",compact("films"));
 }
 
 

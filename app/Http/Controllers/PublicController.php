@@ -23,7 +23,8 @@ Public function post_book(Request $request){
     "bookName"=>$request->bookName,
     "bookAutor"=>$request->bookAutor,
     "bookYear"=>$request->bookYear,
-    "bookDescription"=>$request->bookDescription
+    "bookDescription"=>$request->bookDescription,
+    "img"=>$request->file("img")->store("image","public")
 ]);
 return redirect(route("card libri"))->with('status','libro inserito con successo');
 }

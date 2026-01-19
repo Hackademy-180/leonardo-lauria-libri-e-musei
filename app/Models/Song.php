@@ -4,9 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Book extends Model
+class Song extends Model
 {
-    protected $fillable=["bookName","bookAutor","bookYear","bookDescription","img"];
+    protected $fillable=["title","yearRelese","autor","img"];
     public function user(){
     return $this->belongsTo(User::class);
 }

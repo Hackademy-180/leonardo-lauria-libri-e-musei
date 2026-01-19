@@ -27,6 +27,20 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="{{route("film_collection")}}">collezione film </a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route("create_song")}}">inserimento canzoni </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="{{route("index_song")}}">collezione canzoni </a>
+        </li>
+         <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            benvenuto utente
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{{route("register")}}">register</a></li>
+            <li><a class="dropdown-item" href="{{route("login")}}">log in </a></li>
+          </ul>
       </ul>
     </div>
   </div>

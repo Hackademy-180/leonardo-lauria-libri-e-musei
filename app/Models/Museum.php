@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Museum extends Model
 {
-    protected $fillable=["museumName","museumCountry","museumYear","museumDescription"];
+    protected $fillable=["museumName","museumCountry","museumYear","museumDescription","user_id"];
 }

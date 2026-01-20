@@ -8,6 +8,15 @@
             <h5 class="card-title">titolo della canzone: {{$song["title"]}}</h5>
             <p class="card-text">anno di rilascio: {{$song["yearRelese"]}}</p>
             <p class="card-text">nome: {{$song["autor"]}}</p>
+            <ul>
+
+                @foreach ($song->genres as $genre)
+                    <li>
+                        {{$genre->name}}
+                    </li>    
+                @endforeach
+            </ul>
+
             <a class="btn btn-warning" type="submit" href="{{route("edit_song",compact("song"))}}">modifica informazioni</a>
                 <form action="{{route("destroy_song",compact("song"))}}" method="POST" >
                     @csrf

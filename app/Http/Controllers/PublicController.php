@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Film;
 use App\Models\Museum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\PublicController;
 
 class PublicController extends Controller
@@ -24,7 +25,8 @@ Public function post_book(Request $request){
     "bookAutor"=>$request->bookAutor,
     "bookYear"=>$request->bookYear,
     "bookDescription"=>$request->bookDescription,
-    "img"=>$request->file("img")->store("image","public")
+    "img"=>$request->file("img")->store("image","public"),
+    "user_id"=>Auth::user()->id
 ]);
 return redirect(route("card libri"))->with('status','libro inserito con successo');
 }
@@ -41,7 +43,8 @@ public function post_museum(Request $request){
     "museumName"=>$request->museumName,
     "museumCountry"=>$request->museumCountry,
     "museumYear"=>$request->museumYear,
-    "museumDescription"=>$request->museumDescription
+    "museumDescription"=>$request->museumDescription,
+    "user_id"=>Auth::user()->id
 ]);
 return redirect(route("card musei"))->with('status','nuovo museo inserito con successo');
 }
@@ -58,7 +61,8 @@ Film::create([
     "filmName"=>$request->filmName,
     "filmRegist"=>$request->filmRegist,
     "filmYear"=>$request->filmYear,
-    "filmDescription"=>$request->filmDescription
+    "filmDescription"=>$request->filmDescription,
+    "user_id"=>Auth::user()->id
 ]);
 return redirect(route("film_collection"))->with('status','nuovo film inserito con successo');
 }

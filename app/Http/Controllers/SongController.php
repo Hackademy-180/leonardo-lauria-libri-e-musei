@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Song;
+use App\Models\Genre;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SongController extends Controller
 {
@@ -13,7 +15,8 @@ class SongController extends Controller
     public function index()
     {
         $songs=Song::all();
-        return view("song.index_song",compact("songs"));
+        $genres=Genre::all();
+        return view("song.index_song",compact("songs","genres"));
     }
 
     /**
@@ -21,7 +24,8 @@ class SongController extends Controller
      */
     public function create()
     {
-        return view("song.card_song");
+        $genres=Genre::all();
+        return view("song.card_song",compact("genres"));
     }
 
     /**
@@ -29,12 +33,14 @@ class SongController extends Controller
      */
     public function store(Request $request)
     {
-        Song::create([
+        $song=Song::create([
            "title"=>$request->title,
            "yearRelese"=>$request->yearRelese,
            "autor"=>$request->autor,
-           "img"=>$request->file("img")->store("image","public")
+           "img"=>$request->file("img")->store("image","public"),
+           "user_id"=>Auth::user()->id
         ]);
+        $song->genres()->attach($request->genres);
         return redirect(route("index_song"))->with("status","canzone salvata con successo");
     }
 
@@ -43,7 +49,7 @@ class SongController extends Controller
      */
     public function show(Song $song)
     {
-        return view("song.show_song",compact("song"));
+        return view("song.show_song",compact("song",));
     }
 
     /**
@@ -51,7 +57,8 @@ class SongController extends Controller
      */
     public function edit(Song $song)
     {
-        return view("song.edit_song",compact("song"));
+        $genres=Genre::all();
+        return view("song.edit_song",compact("song","genres"));
     }
 
     /**
@@ -65,6 +72,7 @@ class SongController extends Controller
            "autor"=>$request->autor,
            "img"=>$request->file("img")->store("image","public")
         ]);
+        $song->genres()->sync($request->genres);
         return redirect(route("index_song"))->with("status","canzone modificata con successo");
     }
 
@@ -73,6 +81,7 @@ class SongController extends Controller
      */
     public function destroy(Song $song)
     {
+        $song->genres()->detach();
         $song->delete();
         return redirect(route("index_song"))->with("status","canzone eliminata con successo");
         

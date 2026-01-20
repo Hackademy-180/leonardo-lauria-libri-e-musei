@@ -1,6 +1,8 @@
-<form method="POST" action="{{route("register")}}">@crsf
+<x-layout>
+<form method="POST" action="{{route("register")}}">
+  @csrf
     <div class="mb-3">
-    <label for="exampleInputEmail1" class="form-label">user name</label>
+    <label for="username" class="form-label">user name</label>
     <input name="name" type="text" class="form-control" id="username" >
   </div>
   <div class="mb-3">
@@ -18,3 +20,4 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</x-layout>
